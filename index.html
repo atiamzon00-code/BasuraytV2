@@ -233,11 +233,20 @@
 
     </div>
   </div>
+  <script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js")
+  .then(() => console.log("Service Worker registered"))
+  .catch(e => console.log("SW registration failed", e));
+}
+</script>
+
 
   <!-- JS -->
   <script src="script.js"></script>
 
 </body>
 </html>
+
 
 
