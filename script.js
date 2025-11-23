@@ -325,4 +325,29 @@ function showRandomTip(type) {
     setupPremiumSystem();
   });
 
+  let deferredPrompt;
+const installPopup = document.getElementById("installPopup");
+const installBtn = document.getElementById("installBtn");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  installPopup.style.display = "block"; // SHOW POPUP
+});
+
+installBtn.addEventListener("click", async () => {
+  installPopup.style.display = "none";
+
+  if (!deferredPrompt) return;
+
+  deferredPrompt.prompt();
+
+  const { outcome } = await deferredPrompt.userChoice;
+
+  deferredPrompt = null;
+});
+
+
 })();
+
