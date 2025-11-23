@@ -6,8 +6,8 @@ const assetsToCache = [
   "style.css",
   "script.js",
   "manifest.json",
-  "icons/basurayt-513.png",
-  "icons/basurayt-913.png",
+  "icons/basurayt-192.png",
+  "icons/basurayt-512.png",
   "icons/maskable-basurayt.png"
 ];
 
@@ -48,6 +48,10 @@ self.addEventListener("fetch", (event) => {
             cache.put(event.request, res.clone());
             return res;
           });
+        }).catch(() => {
+          if (event.request.mode === "navigate") {
+            return caches.match("index.html");
+          }
         })
       );
     })
