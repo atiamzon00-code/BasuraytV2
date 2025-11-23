@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BASURAYT ♻️</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ✨ Logo Animation */
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-20px); }
+      60% { transform: translateY(-10px); }
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      animation: bounce 2.5s infinite;
+    }
+
+    /* LOGIN UI FIXED */
+    #login-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    #login-section input {
+      width: 80%;
+      max-width: 280px;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      text-align: center;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #login-section button {
+      width: 80%;
+      max-width: 280px;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #f1c40f, #e67e22);
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #camera-section { display: none; }
+
+    .sidebar.visible {
+      transform: translateX(0);
+      transition: transform 0.3s ease-in-out;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <img src="https://i.postimg.cc/1RJZFqPd/11.jpg" alt="BASURAYT" class="logo">
+    <h1></h1>
+
+    <!-- LOGIN SECTION -->
+    <div id="login-section">
+      <input type="text" id="username" placeholder="Enter your username">
+      <input type="password" id="password" placeholder="Enter your password">
+      <button id="login-btn">Login</button>
+    </div>
+
+    <!-- CAMERA SECTION -->
+    <div id="camera-section">
+      <video id="camera" autoplay playsinline></video>
+      <button id="capture">📷 Scan Object</button>
+      <button id="reset">🔁 Reset Points</button>
+      <p id="result">Result will appear here...</p>
+      <p id="tip">Tip of the Day will appear here...</p>
+    </div>
+  </div>
+
+  <!-- SCOREBOARD SIDEBAR -->
+  <div id="scoreboard" class="sidebar">
+    <div class="sidebar-header">
+      <h2>🏆 Scoreboard</h2>
+      <button class="close-btn" data-target="scoreboard">✖</button>
+    </div>
+    <ul id="score-list"></ul>
+  </div>
+
+  <!-- HOW TO USE SIDEBAR -->
+  <div id="howto" class="sidebar">
+    <div class="sidebar-header">
+      <h2>📘 How to Use BASURAYT</h2>
+      <button class="close-btn" data-target="howto">✖</button>
+    </div>
+    <ul>
+      <li>1️⃣ Enter your username and password.</li>
+      <li>2️⃣ Allow camera access.</li>
+      <li>3️⃣ Tap Scan Object.</li>
+      <li>4️⃣ Earn points.</li>
+      <li>5️⃣ Check Scoreboard.</li>
+      <li>6️⃣ View Waste Track.</li>
+      <li>7️⃣ Reset anytime.</li>
+    </ul>
+  </div>
+
+  <!-- WASTE TRACK SIDEBAR -->
+  <div id="wastetrack" class="sidebar">
+    <div class="sidebar-header">
+      <h2>🚮 Waste Track</h2>
+      <button class="close-btn" data-target="wastetrack">✖</button>
+    </div>
+    <ul id="waste-list"></ul>
+  </div>
+
+  <!-- PREMIUM SIDEBAR -->
+  <div id="premium" class="sidebar">
+    <div class="sidebar-header">
+      <h2>💎 Premium Features</h2>
+      <button class="close-btn" data-target="premium">✖</button>
+    </div>
+
+    <ul>
+      <li>⭐ Double points per scan!</li>
+      <li>🌿 Exclusive eco tips.</li>
+      <li>🎁 Special rewards.</li>
+    </ul>
+
+    <h3 style="margin-top: 15px; text-align:center;">🏅 Points, Levels & Rewards</h3>
+
+    <div style="max-height: 300px; overflow-y: auto; margin-top:10px;">
+      <table border="1" cellspacing="0" cellpadding="8" 
+      style="width:100%; border-collapse:collapse; text-align:center; background:#fff; color:#333; border-radius:10px;">
+
+        <tr style="background:#27ae60; color:white;">
+          <th>POINTS</th>
+          <th>LEVEL</th>
+          <th>REWARD</th>
+        </tr>
+
+        <tr><td>1–99</td><td>The Starter</td><td>3 Random Seeds</td></tr>
+        <tr><td>100–299</td><td>The Learner</td><td>3 Bookmarks</td></tr>
+        <tr><td>300–599</td><td>The Consistent</td><td>Notebook & Pen</td></tr>
+        <tr><td>600–999</td><td>The Active Participant</td><td>5 Keychains</td></tr>
+        <tr><td>1,000–1,699</td><td>The Advocate</td><td>Pen Holder</td></tr>
+        <tr><td>1,700–2,499</td><td>The Volunteer</td><td>Pencil Case</td></tr>
+        <tr><td>2,500–3,499</td><td>The Contributor</td><td>Coin Pouch</td></tr>
+        <tr><td>3,500–4,999</td><td>The Role Model</td><td>Lanyard + Card Holder</td></tr>
+        <tr><td>5,000–6,999</td><td>The Leader</td><td>Totebag</td></tr>
+        <tr><td>7,000+</td><td>The Changemaker</td><td>Tumbler + Cutlery Set</td></tr>
+
+      </table>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+      <button id="activate-premium">🔓 Activate Premium</button>
+      <p id="premium-status" style="margin-top:10px; font-weight:bold; color:#2ecc71;">Premium: OFF</p>
+    </div>
+  </div>
+
+  <!-- SIDEBAR BUTTONS -->
+  <div class="sidebar-buttons">
+    <button id="toggle-scoreboard">📊</button>
+    <button id="toggle-howto">📘</button>
+    <button id="toggle-wastetrack">🚮</button>
+    <button id="toggle-premium">💎</button>
+    <button id="logout-btn" style="background:#e74c3c;">🚪</button>
+  </div>
+
+  <!-- PAYMENT MODAL (Now inside body and valid) -->
+  <div id="payment-modal" class="modal-overlay">
+    <div class="payment-box">
+
+      <div class="payment-header">
+        <h2>💎 Unlock Premium</h2>
+        <button class="close-modal" id="close-payment">✖</button>
+      </div>
+
+      <div class="payment-body">
+        <p class="price-tag">₱49.00</p>
+        <p class="desc">Monthly premium subscription.</p>
+
+        <div class="benefits-list" style="
+          text-align:left;
+          background:#f9f9f9;
+          padding:15px;
+          border-radius:10px;
+          margin-bottom:20px;
+          display:flex;
+          flex-direction:column;
+          gap:8px;
+          font-size:14px;
+          color:#000;
+        ">
+          <span>✅ Premium Access</span>
+          <span>✅ Double Points</span>
+          <span>✅ Ads-Free Experience</span>
+        </div>
+
+        <div class="payment-methods" style="display:flex; justify-content:center; gap:20px; margin-top:15px;">
+          <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+            <input type="radio" name="method" checked>
+            <span style="font-size:16px; color:#0d6efd; font-weight:bold;">🔵 GCash</span>
+          </label>
+
+          <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+            <input type="radio" name="method">
+            <span style="font-size:16px; color:#2ecc71; font-weight:bold;">🟢 PayMaya</span>
+          </label>
+        </div>
+      </div>
+
+      <button id="confirm-pay-btn">Pay ₱49.00 Now</button>
+      <p id="payment-status" style="display:none; margin-top:10px; color:#666;">
+        Processing secure payment...
+      </p>
+
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+
+</body>
+</html>
